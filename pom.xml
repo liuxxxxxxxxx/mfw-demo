@@ -132,6 +132,12 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+    <!--反向工程依赖-->
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+      <version>1.3.7</version>
+    </dependency>
     <!--logback的基础模块-->
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -152,6 +158,8 @@
       <version>2.2.4</version>
     </dependency>
 
+
+
   </dependencies>
 
 
@@ -162,11 +170,34 @@
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+
         <configuration>
           <port>8080</port>
           <path>/adminproject</path>
           <uriEncoding>UTF-8</uriEncoding>
         </configuration>
+      </plugin>
+
+        <!--逆向工程插件-->
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.7</version>
+
+        <configuration>
+          <configurationFile>src/main/resources/generator.xml</configurationFile>
+          <verbose>true</verbose>
+          <overwrite>true</overwrite>
+        </configuration>
+        <executions>
+          <execution>
+            <id>Generate MyBatis Artifacts</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
     <!--定义resource的路径，当不放在resource文件夹时两个都要配置-->
