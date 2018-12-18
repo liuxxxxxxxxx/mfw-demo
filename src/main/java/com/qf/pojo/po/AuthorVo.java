@@ -1,6 +1,6 @@
 package com.qf.pojo.po;
 
-public class LoginVo {
+public class AuthorVo {
     private String loginType ;
     private String id;
     private String typeCommand;
