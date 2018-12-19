@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
         authorExampleCriteria.andTypeIdEqualTo(data.getTypeId());
         List<UserAuthor> userAuthors = userAuthorMapper.selectByExample(authorExample);
         if (userAuthors.size() > 0) {
-            return 2;
+            return 3;
         } else {
             String uuid = UUID.randomUUID().toString();
             UserInfo userInfo = new UserInfo();
