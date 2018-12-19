@@ -1,4 +1,4 @@
-package com.qf.pojo.po;
+package com.qf.pojo.vo;
 
 public class AuthorVo {
     private String loginType ;

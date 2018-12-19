@@ -1,6 +1,6 @@
 package com.qf.service;
 
-import com.qf.pojo.po.AuthorVo;
+import com.qf.pojo.vo.AuthorVo;
 import com.qf.pojo.po.UserAuthor;
 import com.qf.pojo.po.UserInfo;
 
