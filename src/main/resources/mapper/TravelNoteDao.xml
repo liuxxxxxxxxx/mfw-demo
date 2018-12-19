@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.TravelNoteDao">
+    <select id="getNoteById" resultMap="travelNote">
+        select * from travel_notes where travel_note_id = #{id}
+    </select>
+    <resultMap id="travelNote" type="com.qf.pojo.po.TravelNote">
+        <id property="id" column="id"/>
+        <result property="travelNoteId" column="travel_note_id"/>
+        <result property="travelNoteTitle" column="travel_note_title"/>
+        <result property="travelNoteBanner" column="travel_note_banner"/>
+        <result property="travelNoteBeginTime" column="travel_note_beginTime"/>
+        <result property="travelNotePeriod" column="travel_note_period"/>
+        <result property="travelNotePrice" column="travel_note_price"/>
+        <result property="travelNoteStyle" column="travel_note_style"/>
+        <result property="travelNoteBrowses" column="travel_note_browses"/>
+        <result property="travelNoteDiscuss" column="travel_note_discuss"/>
+        <result property="travelNoteLikes" column="travel_note_likes"/>
+        <result property="travelNoteCollects" column="travel_note_collects"/>
+        <result property="travelNoteShares" column="travel_note_shares"/>
+        <result property="travelNoteDestination" column="travel_note_destination"/>
+
+        <!--<collection property="travelContent" ofType="com.qf.pojo.po.TravelContent">-->
+        <!--<result property="travelNoteContentNo" />-->
+        <!--</collection>-->
+
+    </resultMap>
+
+    <select id="getTravelNoteContent" resultType="com.qf.pojo.po.TravelContent">
+        select travel_note_id as travelNoteId,travel_note_content_no as travelNoteContentNo,travel_note_content_type as travelNoteContentType,travel_note_content_text as travelNoteContentText
+        from travel_content
+        where travel_note_id = #{id}
+    </select>
+
+
+</mapper>
