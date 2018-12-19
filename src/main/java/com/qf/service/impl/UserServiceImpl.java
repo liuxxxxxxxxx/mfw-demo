@@ -1,9 +1,11 @@
 package com.qf.service.impl;
 
 import com.qf.dao.UserAuthorMapper;
+import com.qf.dao.UserInfoDao;
 import com.qf.dao.UserInfoMapper;
 import com.qf.pojo.po.*;
 import com.qf.pojo.vo.AuthorVo;
+import com.qf.pojo.vo.PageInfo;
 import com.qf.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,8 @@ public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
     @Autowired
     private UserAuthorMapper userAuthorMapper;
+    @Autowired
+    private UserInfoDao userInfoDao;
 
     @Override
     public List<UserInfo> listUsers() {
@@ -46,25 +50,34 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int editUserInfo(UserInfo userInfo) {
-        if(userInfo.getId() == null){
+        if (userInfo.getId() == null) {
             return 0;
-        }else {
-        return userInfoMapper.insertSelective(userInfo);
+        } else {
+            return userInfoMapper.insertSelective(userInfo);
         }
     }
 
+    @Override
+    public int editUserAuthor(UserAuthor userAuthor) {
+        if (userAuthor.getId() == null) {
+            return 0;
+        } else {
+            return userAuthorMapper.insertSelective(userAuthor);
+        }
+    }
 
     @Override
     public int getUserCount() {
         UserInfoExample userInfoExample = new UserInfoExample();
         UserInfoExample.Criteria userInfoExampleCriteria = userInfoExample.createCriteria();
         userInfoExampleCriteria.andIdIsNotNull();
-        return (int)userInfoMapper.countByExample(userInfoExample);
+        return (int) userInfoMapper.countByExample(userInfoExample);
     }
 
     @Override
-    public List<UserInfo> listUserByPage(int pageindex, int pagesize) {
-        return null;
+    public List<UserInfo> listUserByPage(PageInfo info) {
+        return userInfoDao.listUserInfoByPage(info);
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.qf.service;
 import com.qf.pojo.vo.AuthorVo;
 import com.qf.pojo.po.UserAuthor;
 import com.qf.pojo.po.UserInfo;
+import com.qf.pojo.vo.PageInfo;
 
 import java.util.List;
 
@@ -15,9 +16,11 @@ public interface UserService {
 
     int editUserInfo(UserInfo user);
 
+    int editUserAuthor(UserAuthor userAuthor);
+
     int getUserCount();
 
-    List<UserInfo> listUserByPage(int pageindex, int pagesize);
+    List<UserInfo> listUserByPage(PageInfo info);
 
     UserInfo login(AuthorVo data);
 

@@ -1,4 +1,4 @@
-package com.qf.util;
+package com.qf.pojo.vo;
 
 public class PageInfo {
     private int pageIndex;
