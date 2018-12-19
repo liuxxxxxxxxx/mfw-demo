@@ -7,19 +7,21 @@ import com.qf.pojo.po.UserInfo;
 import java.util.List;
 
 public interface UserService {
-    List<UserInfo> ListUsers();
+    List<UserInfo> listUsers();
+
+    List<UserAuthor> listUserAuthors(String userInfoId);
 
     int addUser(UserInfo user);
 
-    int editUser(UserInfo user);
+    int editUserInfo(UserInfo user);
 
-    int logicalDeleteUser(UserInfo user);
-
-    int getUsersCount();
+    int getUserCount();
 
     List<UserInfo> listUserByPage(int pageindex, int pagesize);
 
     UserInfo login(AuthorVo data);
 
     int register(UserAuthor data);
+
+    List<UserInfo> listUsersByNickname(String nickname);
 }

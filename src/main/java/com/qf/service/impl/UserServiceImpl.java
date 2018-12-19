@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,8 +24,19 @@ public class UserServiceImpl implements UserService {
     private UserAuthorMapper userAuthorMapper;
 
     @Override
-    public List<UserInfo> ListUsers() {
-        return null;
+    public List<UserInfo> listUsers() {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoExampleCriteria = userInfoExample.createCriteria();
+        userInfoExampleCriteria.andIdIsNotNull();
+        return userInfoMapper.selectByExample(userInfoExample);
+    }
+
+    @Override
+    public List<UserAuthor> listUserAuthors(String userINfoId) {
+        UserAuthorExample userAuthorExample = new UserAuthorExample();
+        UserAuthorExample.Criteria userAuthorExampleCriteria = userAuthorExample.createCriteria();
+        userAuthorExampleCriteria.andUserInfoIdEqualTo(userINfoId);
+        return userAuthorMapper.selectByExample(userAuthorExample);
     }
 
     @Override
@@ -33,23 +45,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int editUser(UserInfo user) {
-        return 0;
+    public int editUserInfo(UserInfo userInfo) {
+        if(userInfo.getId() == null){
+            return 0;
+        }else {
+        return userInfoMapper.insertSelective(userInfo);
+        }
     }
 
-    @Override
-    public int logicalDeleteUser(UserInfo user) {
-        return 0;
-    }
 
     @Override
-    public int getUsersCount() {
-        return 0;
+    public int getUserCount() {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoExampleCriteria = userInfoExample.createCriteria();
+        userInfoExampleCriteria.andIdIsNotNull();
+        return (int)userInfoMapper.countByExample(userInfoExample);
     }
 
     @Override
     public List<UserInfo> listUserByPage(int pageindex, int pagesize) {
         return null;
+    }
+
+    @Override
+    public List<UserInfo> listUsersByNickname(String nickname) {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoExampleCriteria = userInfoExample.createCriteria();
+        userInfoExampleCriteria.andNicknameLike(nickname);
+        return userInfoMapper.selectByExample(userInfoExample);
     }
 
     @Override
@@ -70,6 +93,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Transactional
     @Override
     public int register(UserAuthor data) {
         if (data.getAuthorType() == null || data.getTypeId() == null || data.getId() != null || data.getIdentify() != null
