@@ -5,6 +5,7 @@ import com.qf.service.HotelService;
 import com.qf.util.PagePro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,5 +57,11 @@ public class HotelAction {
     public String addHotel(@RequestBody Map map){
         String result = service.addHotel(map);
         return result;
+    }
+    @GetMapping("jspgetListsTbHotel")
+    public String jspGetListsTbHotel(@RequestParam(defaultValue = "1")int currentPage, @RequestParam(defaultValue = "10")int pageCount, Model model){
+        PagePro<TbHotel> tbHotels = service.listsHotel(currentPage, pageCount);
+        model.addAttribute("hotels",tbHotels);
+        return "hotel_index";
     }
 }

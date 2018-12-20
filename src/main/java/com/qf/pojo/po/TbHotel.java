@@ -24,6 +24,7 @@ public class TbHotel {
     private String room_facility;
     private String hotel_help;
     private String hotel_img;
+    private String short_info;
 
     public int getId() {
         return id;
@@ -182,5 +183,13 @@ public class TbHotel {
                 ", hotel_help='" + hotel_help + '\'' +
                 ", hotel_img='" + hotel_img + '\'' +
                 '}';
+    }
+
+    public String getShort_info() {
+        return short_info;
+    }
+
+    public void setShort_info(String short_info) {
+        this.short_info = short_info;
     }
 }
