@@ -51,4 +51,20 @@
         insert into travel_team(travel_team_id,travel_team_title,travel_team_keyword,travel_team_type,travel_team_shoper,travel_team_line,travel_team_price,travel_team_beginTime,travel_team_endTime,travel_team_origin,travel_team_distance,travel_team_peoples,travel_team_collects,travel_team_img)
         values(#{travel_team_id},#{travel_team_title},#{travel_team_keyword},#{travel_team_type},#{travel_team_shoper},#{travel_team_line},#{travel_team_price},#{travel_team_beginTime},#{travel_team_endTime},#{travel_team_origin},#{travel_team_distance},#{travel_team_peoples},#{travel_team_collects},#{travel_team_img})
     </insert>
+    <select id="listTravelTeamsByVo" parameterType="com.qf.pojo.vo.TeamSearchVo" resultType="com.qf.pojo.po.TravelTeam">
+        select travel_team_id,travel_team_title,travel_team_keyword,travel_team_type,travel_team_shoper,travel_team_line,travel_team_price,travel_team_beginTime,travel_team_endTime,travel_team_origin,travel_team_distance,travel_team_peoples,travel_team_collects,travel_team_img
+        from travel_team
+        <where>
+            <if test="teamSearchVo!=null and teamSearchVo.cate!=null and teamSearchVo.cate!=''">
+                AND travel_team_type=#{teamSearchVo.cate}
+            </if>
+            <if test="teamSearchVo!=null and teamSearchVo.city!=null and teamSearchVo.city!=''">
+                AND travel_team_origin LIKE CONCAT(CONCAT('%',#{teamSearchVo.city}),'%')
+                or travel_team_distance  LIKE CONCAT(CONCAT('%',#{teamSearchVo.city}),'%')
+            </if>
+            <if test="teamSearchVo!=null and teamSearchVo.zone!=null and teamSearchVo.zone!=''">
+                AND travel_team_title  LIKE CONCAT(CONCAT('%',#{teamSearchVo.zone}),'%')
+            </if>
+        </where>
+    </select>
 </mapper>

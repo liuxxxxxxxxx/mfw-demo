@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.TravelTeamDao;
 import com.qf.pojo.po.TravelTeam;
+import com.qf.pojo.vo.TeamSearchVo;
 import com.qf.pojo.vo.TravelTeamPo;
 import com.qf.service.TravelTeamService;
 import com.qf.util.RandomUtil;
@@ -46,5 +47,10 @@ public class TravelTeamServiceImpl implements TravelTeamService {
     public int countTravelTeams(TravelTeamPo travelTeamPo) {
         Long l=travelTeamDao.countTravelTeams(travelTeamPo);
         return l.intValue();
+    }
+
+    @Override
+    public List<TravelTeam> listTravelTeamsByVo(TeamSearchVo teamSearchVo) {
+        return travelTeamDao.listTravelTeamsByVo(teamSearchVo);
     }
 }
