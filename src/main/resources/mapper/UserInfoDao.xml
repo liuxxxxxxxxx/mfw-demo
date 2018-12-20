@@ -8,7 +8,7 @@
         <result column="avatar" jdbcType="VARCHAR" property="avatar" />
         <result column="area" jdbcType="VARCHAR" property="area" />
         <result column="country" jdbcType="VARCHAR" property="country" />
-        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="level" jdbcType="TINYINT" property="level" />
         <result column="status" jdbcType="BIT" property="status" />
     </resultMap>
