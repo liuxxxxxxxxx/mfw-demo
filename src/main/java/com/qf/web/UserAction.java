@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 
 //在spring-mvc已经配置扫描
@@ -34,6 +35,25 @@ public class UserAction {
     public int register(UserAuthor data) {
         return userService.register(data);
     }
+
+    //    ********************
+//    @GetMapping("user/auto")
+    public void register() {
+        for(int i = 0; i<1000; i++){
+
+        UserAuthor userAuthor = new UserAuthor();
+        userAuthor.setAuthorType("tel");
+        Random random = new Random();
+        String tel = "1" + (random.nextInt(7) + 3);
+        for (int j = 0; j < 9; j++) {
+            tel += random.nextInt(10);
+        }
+        userAuthor.setTypeId(tel);
+        userAuthor.setCommand("000000");
+        userService.register(userAuthor);
+        }
+    }
+
 
     /**
      * * 1.添加依赖  commons-fileupload

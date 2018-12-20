@@ -45,8 +45,14 @@ public class UserAdminAction {
 
     @PutMapping("/admin/author")
     @ResponseBody
-    public int editUserAnthor(UserAuthor userAuthor) {
+    public int editUserAuthor(UserAuthor userAuthor) {
         return userService.editUserAuthor(userAuthor);
+    }
+
+    @GetMapping("/admin/count")
+    @ResponseBody
+    public int countUsers() {
+        return userService.getUserCount();
     }
 
 
