@@ -15,4 +15,10 @@ public interface TbHotelDao {
     List<TbHotel> listTbHotel(@Param("offset")int offset, @Param("pageCount")int pageCount);
 
     int getCount();
+
+    int updateHotel(TbHotel tbHotel);
+
+    int removeHotel(String hotel_id);
+
+    int addHotel(TbHotel hotel);
 }

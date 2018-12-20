@@ -5,12 +5,10 @@ import com.qf.service.HotelService;
 import com.qf.util.PagePro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @param
@@ -37,5 +35,26 @@ public class HotelAction {
         }*/
         return tbHotels;
     }
+    @CrossOrigin
+    @PostMapping("updateHotel")
+    @ResponseBody
+    public String updateHotel(@RequestBody Map map){
+        String result = service.updateHotel(map);
+        return result;
+    }
 
+    @CrossOrigin
+    @ResponseBody
+    @DeleteMapping("removeHotel/{delId}")
+    public String removeHotel(@PathVariable("delId")String delId){
+        return service.removeHotel(delId);
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @PostMapping("addHotel")
+    public String addHotel(@RequestBody Map map){
+        String result = service.addHotel(map);
+        return result;
+    }
 }

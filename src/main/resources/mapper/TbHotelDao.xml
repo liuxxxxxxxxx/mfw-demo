@@ -11,4 +11,19 @@
         select count(1) from
         hotel
     </select>
+    <update id="updateHotel" parameterType="com.qf.pojo.po.TbHotel">
+        update hotel
+        set hotel_name=#{hotel_name},hotel_location=#{hotel_location},hotel_rate=#{hotel_rate},hotel_intime=#{hotel_intime},hotel_outtime=#{hotel_outtime},
+        hotel_buildtime=#{hotel_buildtime},hotel_rebuildtime=#{hotel_rebuildtime},hotel_rooms=#{hotel_rooms},
+        main_facility=#{main_facility},hotel_service=#{hotel_service},hotel_facility=#{hotel_facility},room_facility=#{room_facility},hotel_help=#{hotel_help}
+        where hotel_id=#{hotel_id}
+    </update>
+    <delete id="removeHotel">
+        delete from hotel
+        where hotel_id=#{value}
+    </delete>
+    <insert id="addHotel" parameterType="com.qf.pojo.po.TbHotel">
+        insert into hotel(hotel_name,hotel_location,hotel_score,hotel_rate,hotel_intime,hotel_outtime,hotel_buildtime,hotel_rebuildtime,hotel_rooms,main_facility,hotel_service,hotel_facility,room_facility,hotel_help,hotel_img,hotel_id)
+        values(#{hotel_name},#{hotel_location},#{hotel_score},#{hotel_rate},#{hotel_intime},#{hotel_outtime},#{hotel_buildtime},#{hotel_rebuildtime},#{hotel_rooms},#{main_facility},#{hotel_service},#{hotel_facility},#{room_facility},#{hotel_help},#{hotel_img},#{hotel_id})
+    </insert>
 </mapper>

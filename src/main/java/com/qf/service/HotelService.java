@@ -4,6 +4,7 @@ import com.qf.pojo.po.TbHotel;
 import com.qf.util.PagePro;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @param
@@ -14,4 +15,10 @@ import java.util.List;
 public interface HotelService {
     //dao
     PagePro<TbHotel> listsHotel(int currentPage, int pageCount);
+
+    String updateHotel(Map map);
+
+    String removeHotel(String hotel_id);
+
+    String addHotel(Map map);
 }
