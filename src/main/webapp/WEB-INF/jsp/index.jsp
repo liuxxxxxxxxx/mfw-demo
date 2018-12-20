@@ -661,30 +661,38 @@
             <div align="right" class="m-pagination" id="_j_tn_pagination" data-type="0" data-objid="0">
                 <span class="count">共${totalPage} 页/ ${total}条</span>
 
-                <a class="pg-prev _j_pageitem" href="javascript:;" data-page="1" rel="nofollow">&lt;&lt; 上一页</a>
-                <c:if test="${pageIndex}<=5">
+                <c:if test="${pageIndex==1}"></c:if>
+                <c:if test="${pageIndex!=1}">
+                    <a class="pg-prev _j_pageitem" href="javascript:;" data-page="1" rel="nofollow" href="/index?pageIndex=${pageIndex-1}">&lt;&lt; 上一页</a>
+                </c:if>
+
+                <c:if test="${pageIndex<=5}">
                     <span class="pg-current">${pageIndex}</span>
-                    <c:forEach begin="${pageIndex}+1" end="${pageIndex}+10" step="9" var="page">
-                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow">${page}</a>
+                    <c:forEach begin="${pageIndex+1}" end="${pageIndex+10}" var="page">
+                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow" href="/index?pageIndex=${page}">${page}</a>
                     </c:forEach>
                 </c:if>
-                <c:if test="${pageIndex}>=(${totalPage}-5)">
-                    <c:forEach begin="${pageIndex}-10" end="${pageIndex}-1" step="9" var="page">
-                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow">${page}</a>
+                <c:if test="${pageIndex>=totalPage-5}">
+                    <c:forEach begin="${pageIndex-10}" end="${pageIndex-1}" var="page">
+                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow" href="/index?pageIndex=${page}">${page}</a>
                     </c:forEach>
                     <span class="pg-current">${pageIndex}</span>
                 </c:if>
                 <%--else--%>
-                <c:if test="${pageIndex}>5 && ${pageIndex}<${totalPage}-5">
-                    <c:forEach begin="${pageIndex}-4" end="${pageIndex}-1">
-                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow">${page}</a>
+                <c:if test="${pageIndex>5} && ${pageIndex<totalPage-5}">
+                    <c:forEach begin="${pageIndex-4}" end="${pageIndex-1}" var="page">
+                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow" href="/index?pageIndex=${page}">${page}</a>
                     </c:forEach>
                     <span class="pg-current">${pageIndex}</span>
-                    <c:forEach begin="${pageIndex}+1" end="${pageIndex}+5" var="page">
-                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow">${page}</a>
+                    <c:forEach begin="${pageIndex+1}" end="${pageIndex+5}" var="page">
+                        <a class="pi _j_pageitem" href="javascript:;" data-page="${page}" rel="nofollow" href="/index?pageIndex=${page}">${page}</a>
                     </c:forEach>
                 </c:if>
-                <a class="pg-next _j_pageitem" href="javascript:;" data-page="2" rel="nofollow">下一页 &gt;&gt;</a>
+                <%--下一页--%>
+                <c:if test="${pageIndex==1}"></c:if>
+                <c:if test="${pageIndex!=totalPage}">
+                    <a class="pg-next _j_pageitem" href="javascript:;" data-page="2" rel="nofollow" href="/index?pageIndex=${pageIndex+1}">下一页 &gt;&gt;</a>
+                </c:if>
             </div>
 
             <div data-pagelet id="pagelet-block-23e55ad383e282b6ac184f7a51b5ce5b" class=""
