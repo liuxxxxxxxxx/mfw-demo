@@ -12,5 +12,6 @@ import java.util.List;
  * @version: v1.0
  */
 public interface HotelService {
+    //dao
     PagePro<TbHotel> listsHotel(int currentPage, int pageCount);
 }
