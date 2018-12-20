@@ -109,6 +109,8 @@
                 </li>
                 <li class="head-nav-app" data-cs-p="app"><a href="http://www.mafengwo.cn/app/intro/gonglve.php"
                                                             title="APP">APP</a></li>
+                <li class="head-nav-app" title="登录">登录</li>
+                <li class="head-nav-app" title="注册">注册</li>
             </ul>
             <div class="head-search" data-online="1">
                 <div class="head-search-wrapper">

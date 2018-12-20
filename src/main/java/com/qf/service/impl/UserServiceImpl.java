@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.UUID;
@@ -49,11 +50,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int editUserInfo(UserInfo userInfo) {
+    public int editUserInfo(@RequestBody UserInfo userInfo) {
         if (userInfo.getId() == null) {
             return 0;
         } else {
-            return userInfoMapper.insertSelective(userInfo);
+            userInfo.setCreateTime(null);
+            return userInfoMapper.updateByPrimaryKeySelective(userInfo);
         }
     }
 
@@ -62,7 +64,7 @@ public class UserServiceImpl implements UserService {
         if (userAuthor.getId() == null) {
             return 0;
         } else {
-            return userAuthorMapper.insertSelective(userAuthor);
+            return userAuthorMapper.updateByPrimaryKeySelective(userAuthor);
         }
     }
 
@@ -128,5 +130,12 @@ public class UserServiceImpl implements UserService {
             userInfoMapper.insertSelective(userInfo);
             return userAuthorMapper.insertSelective(data);
         }
+    }
+
+    @Override
+    public String getUserInfoId(int index) {
+        UserAuthor userAuthor = userAuthorMapper.selectByPrimaryKey(index);
+
+        return userAuthor.getUserInfoId();
     }
 }

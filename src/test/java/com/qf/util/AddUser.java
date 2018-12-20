@@ -33,17 +33,17 @@ public class AddUser {
                 int index = random.nextInt(fnames.length);
                 String fname = fnames[index];
                 UserInfo userInfo = new UserInfo();
-                int age = random.nextInt(100) + 1;
-                String phone="1"+(random.nextInt(7)+3);
+//                int gender = random.nextInt(1);
+//                String phone="1"+(random.nextInt(7)+3);
                 String lname = "";
                 if(random.nextBoolean()){
                     lname+=getChinese()+getChinese();
                 }else {
                     lname+=getChinese();
                 }
-                for (int j=0;j<9;j++){
-                    phone+=random.nextInt(10);
-                }
+//                for (int j=0;j<9;j++){
+//                    phone+=random.nextInt(10);
+//                }
 
                 String name=fname+lname;
                 userInfo.setNickname(name);
