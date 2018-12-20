@@ -22,6 +22,12 @@ public class UserAction {
     //    注入属性
     @Autowired
     private UserService userService;
+    @GetMapping("user")
+    public String personal(){
+        return"personal";
+    }
+
+
 
     @PostMapping("user/login")
     @ResponseBody

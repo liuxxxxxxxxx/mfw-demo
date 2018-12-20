@@ -27,4 +27,6 @@ public interface UserService {
     int register(UserAuthor data);
 
     List<UserInfo> listUsersByNickname(String nickname);
+
+    String getUserInfoId(int Index);
 }
