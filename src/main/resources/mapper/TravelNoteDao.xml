@@ -34,5 +34,56 @@
         where travel_note_id = #{id}
     </select>
 
+    <select id="totalTravels" resultType="int">
+        select count(1) from travel_notes
+        <where>
+            <if test="travel_note_title!=null and travel_note_title!=''">
+                travel_note_title like CONCAT(CONCAT('%', #{travel_note_title,jdbcType=VARCHAR}),'%')
+            </if>
+        </where>
+    </select>
 
+    <!--游记分页-->
+    <select id="pageListTravels" resultMap="travelNote">
+        select *
+        from travel_notes
+        <where>
+            <if test="travel_note_title!=null and travel_note_title!=''">
+                travel_note_title like CONCAT(CONCAT('%', #{travel_note_title,jdbcType=VARCHAR}),'%')
+            </if>
+        </where>
+        limit #{offset},#{pageSize}
+    </select>
+
+    <delete id="removeTravelByTravelNoteId" parameterType="java.lang.String">
+        delete from travel_notes where travel_note_id=#{value}
+    </delete>
+
+    <delete id="removeTravels">
+        delete from travel_notes
+        where travel_note_id in
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="insertTravel" keyProperty="id" parameterType="com.qf.pojo.po.TravelNote">
+      insert into
+      travel_notes(travel_note_id,travel_note_title,travel_note_banner,travel_note_beginTime,travel_note_period,travel_note_price,travel_note_style,travel_note_destination)
+      values(#{travelNoteId},#{travelNoteTitle},#{travelNoteBanner},#{travelNoteBeginTime},#{travelNotePeriod},#{travelNotePrice},#{travelNoteStyle},#{travelNoteDestination})
+    </insert>
+
+    <update id="editTravel" parameterType="com.qf.pojo.po.TravelNote">
+        update travel_notes
+        set
+        travel_note_title=#{travelNoteTitle},
+        travel_note_banner=#{travelNoteBanner},
+        travel_note_beginTime=#{travelNoteBeginTime},
+        travel_note_period=#{travelNotePeriod},
+        travel_note_price=#{travelNotePrice},
+        travel_note_style=#{travelNoteStyle},
+        travel_note_destination=#{travelNoteDestination}
+        where travel_note_id=#{travelNoteId}
+
+    </update>
 </mapper>

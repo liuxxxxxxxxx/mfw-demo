@@ -12,11 +12,20 @@ public class TravelNote {
     private int travelNotePrice;
     private String travelNoteStyle;
     private int travelNoteBrowses;
+    private int travelNoteDiscuss;
     private int travelNoteLikes;
     private int travelNoteCollects;
     private int travelNoteShares;
     private String travelNoteDestination;
     private List<TravelContent> travelContent;
+
+    public int getTravelNoteDiscuss() {
+        return travelNoteDiscuss;
+    }
+
+    public void setTravelNoteDiscuss(int travelNoteDiscuss) {
+        this.travelNoteDiscuss = travelNoteDiscuss;
+    }
 
     public int getId() {
         return id;
@@ -142,6 +151,7 @@ public class TravelNote {
                 ", travelNotePrice=" + travelNotePrice +
                 ", travelNoteStyle='" + travelNoteStyle + '\'' +
                 ", travelNoteBrowses=" + travelNoteBrowses +
+                ", travelNoteDiscuss=" + travelNoteDiscuss +
                 ", travelNoteLikes=" + travelNoteLikes +
                 ", travelNoteCollects=" + travelNoteCollects +
                 ", travelNoteShares=" + travelNoteShares +
