@@ -31,11 +31,10 @@ public class UserAdminAction {
         return userService.listUserAuthors(userInfoId);
     }
 
-    @GetMapping("/admin/search{nickname}")
+    @GetMapping("/admin/search")
     @ResponseBody
-    public UserInfo getUserByNickname(@PathVariable String nickname) {
-        List<UserInfo> userInfos = userService.listUsersByNickname(nickname);
-        return null;
+    public List<UserInfo> getUserByNickname(@RequestParam String nickname) {
+        return userService.listUsersByNickname("%"+nickname+"%");
     }
 
     @PutMapping("/admin")
