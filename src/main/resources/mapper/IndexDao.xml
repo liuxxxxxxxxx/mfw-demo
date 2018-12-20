@@ -7,7 +7,9 @@
         select
         travel_notes.travel_note_id,travel_note_title,travel_note_banner,travel_note_destination,travel_note_browses,travel_note_content_text
         from travel_notes,travel_content
-        where travel_notes.travel_note_id=travel_content.travel_note_id AND travel_note_content_no=1
+        where travel_notes.travel_note_id=travel_content.travel_note_id
+        and travel_content.travel_note_content_no=1
+        and travel_content.travel_note_content_type=1
         limit #{offset},#{pageSize}
     </select>
 
@@ -15,5 +17,7 @@
         select count(1)
         from travel_notes,travel_content
         where travel_notes.travel_note_id=travel_content.travel_note_id
+        and travel_content.travel_note_content_no=1
+        and travel_content.travel_note_content_type=1
     </select>
 </mapper>
