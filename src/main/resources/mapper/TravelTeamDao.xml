@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.TravelTeamDao">
+    <select id="listTravelTeams" parameterType="com.qf.pojo.vo.TravelTeamPo" resultType="com.qf.pojo.po.TravelTeam">
+        select travel_team_id,travel_team_title,travel_team_keyword,travel_team_type,travel_team_shoper,travel_team_line,travel_team_price,travel_team_beginTime,travel_team_endTime,travel_team_origin,travel_team_distance,travel_team_peoples,travel_team_collects,travel_team_img
+        from travel_team
+        <where>
+            <if test="search!=null and search!=''">
+                travel_team_title LIKE CONCAT(CONCAT('%',#{search}),'%')
+            </if>
+        </where>
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="countTravelTeams" parameterType="com.qf.pojo.vo.TravelTeamPo"  resultType="_long">
+        select count(1)
+        FROM  travel_team
+        <where>
+            <if test="search!=null and search!=''">
+                travel_team_title LIKE CONCAT(CONCAT('%',#{search}),'%')
+            </if>
+        </where>
+    </select>
+    <delete id="removeTravelTeam">
+        DELETE
+        FROM travel_team
+        WHERE travel_team_id=#{travel_team_id}
+    </delete>
+    <update id="updateTravelTeam" parameterType="com.qf.pojo.po.TravelTeam">
+        UPDATE
+        travel_team
+        SET
+        travel_team_title=#{travel_team_title},
+        travel_team_keyword=#{travel_team_keyword},
+        travel_team_type=#{travel_team_type},
+        travel_team_shoper=#{travel_team_shoper},
+        travel_team_line=#{travel_team_line},
+        travel_team_price=#{travel_team_price},
+        travel_team_beginTime=#{travel_team_beginTime},
+        travel_team_endTime=#{travel_team_endTime},
+        travel_team_origin=#{travel_team_origin},
+        travel_team_distance=#{travel_team_distance},
+        travel_team_peoples=#{travel_team_peoples},
+        travel_team_collects=#{travel_team_collects},
+        travel_team_img=#{travel_team_img}
+        WHERE travel_team_id=#{travel_team_id}
+    </update>
+    <insert id="saveTravelTeam"  parameterType="com.qf.pojo.po.TravelTeam">
+        insert into travel_team(travel_team_id,travel_team_title,travel_team_keyword,travel_team_type,travel_team_shoper,travel_team_line,travel_team_price,travel_team_beginTime,travel_team_endTime,travel_team_origin,travel_team_distance,travel_team_peoples,travel_team_collects,travel_team_img)
+        values(#{travel_team_id},#{travel_team_title},#{travel_team_keyword},#{travel_team_type},#{travel_team_shoper},#{travel_team_line},#{travel_team_price},#{travel_team_beginTime},#{travel_team_endTime},#{travel_team_origin},#{travel_team_distance},#{travel_team_peoples},#{travel_team_collects},#{travel_team_img})
+    </insert>
+</mapper>
