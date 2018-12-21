@@ -95,8 +95,8 @@ public class UserServiceImpl implements UserService {
         UserAuthorExample authorExample = new UserAuthorExample();
         UserAuthorExample.Criteria authorExampleCriteria = authorExample.createCriteria();
         authorExampleCriteria.andAuthorTypeEqualTo(data.getLoginType());
-        authorExampleCriteria.andTypeIdEqualTo(data.getId());
-        authorExampleCriteria.andCommandEqualTo(data.getTypeCommand());
+        authorExampleCriteria.andTypeIdEqualTo(data.getTypeId());
+        authorExampleCriteria.andCommandEqualTo(data.getCommand());
         List<UserAuthor> userAuthors = userAuthorMapper.selectByExample(authorExample);
         if (userAuthors.size() > 0) {
             UserAuthor userAuthor = userAuthors.get(0);

@@ -22,21 +22,23 @@ public class UserAction {
     //    注入属性
     @Autowired
     private UserService userService;
+
+    //无用
     @GetMapping("user")
     public String personal(){
         return"personal";
     }
 
 
-
-    @PostMapping("user/login")
+    //普通用户登录
+    @PostMapping("user")
     @ResponseBody
     public UserInfo login(AuthorVo data) {
         return userService.login(data);
 
     }
-
-    @PostMapping("user")
+    //普通用户注册
+    @PutMapping("user")
     @ResponseBody
     public int register(UserAuthor data) {
         return userService.register(data);

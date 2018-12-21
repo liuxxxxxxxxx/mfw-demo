@@ -2,8 +2,8 @@ package com.qf.pojo.vo;
 
 public class AuthorVo {
     private String loginType ;
-    private String id;
-    private String typeCommand;
+    private String typeId;
+    private String command;
 
     public String getLoginType() {
         return loginType;
@@ -13,19 +13,19 @@ public class AuthorVo {
         this.loginType = loginType;
     }
 
-    public String getId() {
-        return id;
+    public String getTypeId() {
+        return typeId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
     }
 
-    public String getTypeCommand() {
-        return typeCommand;
+    public String getCommand() {
+        return command;
     }
 
-    public void setTypeCommand(String typeCommand) {
-        this.typeCommand = typeCommand;
+    public void setCommand(String command) {
+        this.command = command;
     }
 }
