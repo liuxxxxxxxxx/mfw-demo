@@ -35,8 +35,8 @@ public class UserAction {
     @ResponseBody
     public UserInfo login(AuthorVo data) {
         return userService.login(data);
-
     }
+
     //普通用户注册
     @PutMapping("user")
     @ResponseBody

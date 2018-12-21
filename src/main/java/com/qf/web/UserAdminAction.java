@@ -12,12 +12,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Random;
 
-@RequestMapping("/user")
+//@RequestMapping("/user")
 @Controller
 public class UserAdminAction {
     @Autowired
     private UserService userService;
-
+//    分页查询所有用户
     @GetMapping("/admin")
     @ResponseBody
     public List<UserInfo> listUserInfoByPage(@RequestParam String pageIndex, @RequestParam String pageSize) {
@@ -26,31 +26,31 @@ public class UserAdminAction {
         pageInfo.setPageSize(Integer.parseInt(pageSize));
         return userService.listUserByPage(pageInfo);
     }
-
+//    查询授权信息
     @GetMapping("/admin/author")
     @ResponseBody
     public List<UserAuthor> listUserAuthor(@RequestParam String userInfoId) {
         return userService.listUserAuthors(userInfoId);
     }
-
+//    通过昵称查找用户
     @GetMapping("/admin/search")
     @ResponseBody
     public List<UserInfo> getUserByNickname(@RequestParam String nickname) {
         return userService.listUsersByNickname("%" + nickname + "%");
     }
-
+//    更新用户基础信息
     @PutMapping("/admin")
     @ResponseBody
     public int editUserInfo(@RequestBody UserInfo userInfo) {
         return userService.editUserInfo(userInfo);
     }
-
+//    更新用户授权信息
     @PutMapping("/admin/author")
     @ResponseBody
     public int editUserAuthor(@RequestBody UserAuthor userAuthor) {
         return userService.editUserAuthor(userAuthor);
     }
-
+//    用户数统计
     @GetMapping("/admin/count")
     @ResponseBody
     public int countUsers() {
@@ -85,7 +85,7 @@ public class UserAdminAction {
     public static String getAName() {
         Random random = new Random();
 
-        String[] firstnames = {"赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈", "褚", "卫", "蒋", "沈",
+        String[] firstNames = {"赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈", "褚", "卫", "蒋", "沈",
                 "韩", "杨", "朱", "秦", "尤", "许", "何", "吕", "施", "张", "孔", "曹", "严", "华", "金", "魏", "陶",
                 "姜", "戚", "谢", "邹", "喻", "柏", "水", "窦", "章", "云", "苏", "潘", "葛", "奚", "范", "彭", "郎",
                 "鲁", "韦", "昌", "马", "苗", "凤", "花", "方", "俞", "任", "袁", "柳", "酆", "鲍", "史", "唐", "费",
@@ -122,15 +122,15 @@ public class UserAdminAction {
                 "宰父", "谷梁", "段干", "百里", "东郭", "微生", "梁丘", "左丘", "东门", "西门", "南宫", "第五", "公仪", "公乘",
                 "太史", "仲长", "叔孙", "屈突", "尔朱", "东乡", "相里", "胡母", "司城", "张廖", "雍门", "毋丘", "贺兰", "綦毋",
                 "屋庐", "独孤", "南郭", "北宫", "王孙"};
-        int index = random.nextInt(firstnames.length);
-        String firstname = firstnames[index];
+        int index = random.nextInt(firstNames.length);
+        String firstName = firstNames[index];
         String lastName = "";
         if (random.nextBoolean()) {
             lastName += getChineseWord() + getChineseWord();
         } else {
             lastName += getChineseWord();
         }
-        return firstname + lastName;
+        return firstName + lastName;
     }
 
     public static String getChineseWord() {
