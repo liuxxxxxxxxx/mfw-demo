@@ -39,35 +39,35 @@
         <div class="header-wrap clearfix">
             <div class="head-logo"><a class="mfw-logo" title="马蜂窝自由行" href="http://www.mafengwo.cn/"></a></div>
             <ul class="head-nav" data-cs-t="headnav" id="_j_head_nav">
-                <li class="head-nav-index" data-cs-p="index"><a href="http://www.mafengwo.cn/">首页</a></li>
+                <a href="index"> <li class="head-nav-index" data-cs-p="index">首页</li></a>
                 <li class="head-nav-place" data-cs-p="mdd"><a href="http://www.mafengwo.cn/mdd/" title="目的地">目的地</a>
                 </li>
                 <li class="head-nav-gonglve" data-cs-p="gonglve"><a href="http://www.mafengwo.cn/gonglve/" title="旅游攻略">旅游攻略</a>
                 </li>
                 <li class="head-nav-sales head-nav-dropdown _j_sales_nav_show" id="_j_nav_sales" data-cs-p="sales">
-                    <a class="drop-toggle" href="http://www.mafengwo.cn/sales/"
+                    <a class="drop-toggle" href="travelTeams"
                        style="cursor: pointer;display: block;border-bottom:0 none;" data-sales-nav="旅行商城">
                         <span>旅行商城<i class="icon-caret-down"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-sales hide _j_sales_top" id="_j_sales_panel"
                          data-cs-t="sales_nav">
                         <ul>
-                            <li><a target="_blank" href="http://www.mafengwo.cn/sales/" data-sales-nav="机票＋酒店">自由行<i
+                            <li><a target="_blank" href="travelTeams" data-sales-nav="机票＋酒店">自由行<i
                                     class="i-hot">hot</i></a></li>
-                            <li><a target="_blank" href="http://www.mafengwo.cn/sales/0-0-0-0-0-0-0-0.html?group=4"
+                            <li><a target="_blank" href="travelTeams"
                                    data-sales-nav="跟团游">跟团游</a></li>
-                            <li><a target="_blank" href="http://www.mafengwo.cn/localdeals/"
+                            <li><a target="_blank" href="travelTeams"
                                    data-sales-nav="当地游">当地游</a></li>
-                            <li><a target="_blank" href="http://www.mafengwo.cn/flight/" data-sales-nav="国内机票">国内机票<i
+                            <li><a target="_blank" href="travelTeams" data-sales-nav="国内机票">国内机票<i
                                     class="i-new">new</i></a></li>
-                            <li><a target="_blank" href="http://www.mafengwo.cn/sales/visa/" data-sales-nav="签证">签证</a>
+                            <li><a target="_blank" href="travelTeams" data-sales-nav="签证">签证</a>
                             </li>
-                            <li><a target="_blank" href="http://www.mafengwo.cn/insure/" data-sales-nav="保险">保险</a></li>
+                            <li><a target="_blank" href="travelTeams" data-sales-nav="保险">保险</a></li>
                         </ul>
                     </div>
                 </li>
-                <li class="head-nav-hotel" data-cs-p="hotel"><a href="http://www.mafengwo.cn/hotel/" title="酒店">酒店</a>
-                </li>
+                <a href="http://localhost:8080/adminproject/jspgetListsTbHotel" title="酒店"><li class="head-nav-hotel" data-cs-p="hotel">酒店
+                </li></a>
                 <li class="head-nav-community head-nav-dropdown _j_shequ_nav_show" id="_j_nav_community"
                     data-cs-p="community">
                     <div class="drop-toggle"><span>社区<i class="icon-caret-down"></i></span></div>
