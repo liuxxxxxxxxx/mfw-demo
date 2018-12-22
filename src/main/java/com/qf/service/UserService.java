@@ -1,9 +1,10 @@
 package com.qf.service;
 
+import com.qf.pojo.po.UserImg;
 import com.qf.pojo.vo.AuthorVo;
 import com.qf.pojo.po.UserAuthor;
 import com.qf.pojo.po.UserInfo;
-import com.qf.pojo.vo.PageInfo;
+import com.qf.pojo.vo.UserPageInfo;
 
 import java.util.List;
 
@@ -14,13 +15,13 @@ public interface UserService {
 
     int addUser(UserInfo user);
 
-    int editUserInfo(UserInfo user);
+    int updateUserInfo(UserInfo user);
 
-    int editUserAuthor(UserAuthor userAuthor);
+    int updateUserAuthor(UserAuthor userAuthor);
 
     int getUserCount();
 
-    List<UserInfo> listUserByPage(PageInfo info);
+    List<UserInfo> listUserByPage(UserPageInfo info);
 
     UserInfo login(AuthorVo data);
 
@@ -29,4 +30,6 @@ public interface UserService {
     List<UserInfo> listUsersByNickname(String nickname);
 
     String getUserInfoId(int Index);
+
+    UserImg getImgUrl(int i);
 }

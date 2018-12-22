@@ -13,7 +13,7 @@
         <result column="status" jdbcType="BIT" property="status" />
     </resultMap>
 
-    <select id="listUserInfoByPage" parameterType="com.qf.pojo.vo.PageInfo" resultMap="BaseResultMap">
+    <select id="listUserInfoByPage" parameterType="com.qf.pojo.vo.UserPageInfo" resultMap="BaseResultMap">
         select * from user_info limit #{offset}, #{pageSize}
     </select>
 

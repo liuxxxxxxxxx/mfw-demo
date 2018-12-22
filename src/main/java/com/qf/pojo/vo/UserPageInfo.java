@@ -1,6 +1,6 @@
 package com.qf.pojo.vo;
 
-public class PageInfo {
+public class UserPageInfo {
     private int pageIndex;
     private int pageSize;
     private int offset;

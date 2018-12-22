@@ -5,7 +5,6 @@ import com.qf.pojo.po.TravelContent;
 import com.qf.pojo.po.TravelNote;
 import com.qf.pojo.vo.PageVO;
 import com.qf.service.TravelNoteService;
-import com.qf.util.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,12 @@
 package com.qf.service.impl;
 
 import com.qf.dao.UserAuthorMapper;
+import com.qf.dao.UserImgMapper;
 import com.qf.dao.UserInfoDao;
 import com.qf.dao.UserInfoMapper;
 import com.qf.pojo.po.*;
 import com.qf.pojo.vo.AuthorVo;
-import com.qf.pojo.vo.PageInfo;
+import com.qf.pojo.vo.UserPageInfo;
 import com.qf.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
     private UserAuthorMapper userAuthorMapper;
     @Autowired
     private UserInfoDao userInfoDao;
+    @Autowired
+    private UserImgMapper userImgMapper;
 
     @Override
     public List<UserInfo> listUsers() {
@@ -50,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int editUserInfo(@RequestBody UserInfo userInfo) {
+    public int updateUserInfo(@RequestBody UserInfo userInfo) {
         if (userInfo.getId() == null) {
             return 0;
         } else {
@@ -60,7 +63,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int editUserAuthor(UserAuthor userAuthor) {
+    public int updateUserAuthor(UserAuthor userAuthor) {
         if (userAuthor.getId() == null) {
             return 0;
         } else {
@@ -77,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserInfo> listUserByPage(PageInfo info) {
+    public List<UserInfo> listUserByPage(UserPageInfo info) {
         return userInfoDao.listUserInfoByPage(info);
 
     }
@@ -137,5 +140,11 @@ public class UserServiceImpl implements UserService {
         UserAuthor userAuthor = userAuthorMapper.selectByPrimaryKey(index);
 
         return userAuthor.getUserInfoId();
+    }
+
+    @Override
+    public UserImg getImgUrl(int i) {
+        return userImgMapper.selectByPrimaryKey(i);
+
     }
 }

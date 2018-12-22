@@ -3,12 +3,10 @@ package com.qf.web;
 import com.qf.pojo.po.TravelNote;
 import com.qf.pojo.vo.PageVO;
 import com.qf.service.TravelNoteService;
-import com.qf.util.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 

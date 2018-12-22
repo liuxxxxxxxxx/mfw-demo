@@ -3,7 +3,6 @@ package com.qf.service;
 import com.qf.pojo.po.TravelContent;
 import com.qf.pojo.po.TravelNote;
 import com.qf.pojo.vo.PageVO;
-import com.qf.util.PageInfo;
 
 import java.util.List;
 

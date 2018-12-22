@@ -1,8 +1,9 @@
 package com.qf.web;
 
 import com.qf.pojo.po.UserAuthor;
+import com.qf.pojo.po.UserImg;
 import com.qf.pojo.po.UserInfo;
-import com.qf.pojo.vo.PageInfo;
+import com.qf.pojo.vo.UserPageInfo;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class UserAdminAction {
     @GetMapping("/admin")
     @ResponseBody
     public List<UserInfo> listUserInfoByPage(@RequestParam String pageIndex, @RequestParam String pageSize) {
-        PageInfo pageInfo = new PageInfo();
+        UserPageInfo pageInfo = new UserPageInfo();
         pageInfo.setPageIndex(Integer.parseInt(pageIndex));
         pageInfo.setPageSize(Integer.parseInt(pageSize));
         return userService.listUserByPage(pageInfo);
@@ -41,14 +42,14 @@ public class UserAdminAction {
 //    更新用户基础信息
     @PutMapping("/admin")
     @ResponseBody
-    public int editUserInfo(@RequestBody UserInfo userInfo) {
-        return userService.editUserInfo(userInfo);
+    public int updateUserInfo(@RequestBody UserInfo userInfo) {
+        return userService.updateUserInfo(userInfo);
     }
 //    更新用户授权信息
     @PutMapping("/admin/author")
     @ResponseBody
-    public int editUserAuthor(@RequestBody UserAuthor userAuthor) {
-        return userService.editUserAuthor(userAuthor);
+    public int updateUserAuthor(@RequestBody UserAuthor userAuthor) {
+        return userService.updateUserAuthor(userAuthor);
     }
 //    用户数统计
     @GetMapping("/admin/count")
@@ -60,26 +61,33 @@ public class UserAdminAction {
 
     //    ***********************
     @GetMapping("/admin/test")
-    public void dummy() {
-        int n = 100;
+    @ResponseBody
+    public int dummy() {
+        int n = 1000;
 
 
         Random random = new Random();
         UserInfo userInfo = new UserInfo();
         for (int i = 1; i < n; i++) {
-            userInfo.setId(userService.getUserInfoId(i+900));
-            userInfo.setNickname(getAName());
-            userInfo.setCountry("中国");
-            userInfo.setArea("杭州");
-            userInfo.setLevel((byte)1);
+            userInfo.setId(userService.getUserInfoId(i));
+//            userInfo.setNickname(getAName());
+//            userInfo.setCountry("中国");
+//            userInfo.setArea("杭州");
+//            userInfo.setLevel((byte)1);
             //
-            if (random.nextBoolean()) {
-                userInfo.setGender(false);
-            } else {
-                userInfo.setGender(true);
-            }
-            userService.editUserInfo(userInfo);
+//            if (random.nextBoolean()) {
+//                userInfo.setGender(false);
+//            } else {
+//                userInfo.setGender(true);
+//            }
+            UserImg imgUrl = userService.getImgUrl(i);
+            StringBuffer imgUrlBuffer = new StringBuffer("https:");
+            imgUrlBuffer.append(imgUrl.getImgUrl());
+
+            userInfo.setAvatar(imgUrlBuffer.toString());
+            userService.updateUserInfo(userInfo);
         }
+        return 1;
     }
 
     public static String getAName() {
