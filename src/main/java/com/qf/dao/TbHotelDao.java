@@ -1,6 +1,7 @@
 package com.qf.dao;
 
 import com.qf.pojo.po.TbHotel;
+import com.qf.pojo.vo.HotelSearchVO;
 import com.qf.pojo.vo.HotelVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -26,6 +27,6 @@ public interface TbHotelDao {
     List<TbHotel> listSearchHotel(@Param("hotel_name")String hotel_name,@Param("offset")int offset,@Param("pageCount")int pageCount);
 
 //    List<TbHotel> listSearchHotelAll(@Param("hotel")TbHotel hotel,@Param("offset")int offset, @Param("pageCount")int pageCount);
-    List<TbHotel> listSearchHotelAll(TbHotel tbHotel);
+    List<TbHotel> listSearchHotelAll(HotelSearchVO tbHotel);
 }
 
