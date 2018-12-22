@@ -541,7 +541,7 @@
             <section class="pong">
                 <div class="prong_u">
                     <div>
-                        <a href="$/products/1727.html" target="_blank"><img  src="${travelTeam.travel_team_img}" alt="【寒假/春节/错峰】长滩岛4晚6日自由行（Z2直飞+全程入住天堂花园或网评4星酒店+可赠送接送）"></a>
+                        <a href="#" target="_blank"><img  src="${travelTeam.travel_team_img}" alt="【寒假/春节/错峰】长滩岛4晚6日自由行（Z2直飞+全程入住天堂花园或网评4星酒店+可赠送接送）"></a>
                         <i>${travelTeam.travel_team_type}</i>
                     </div>
                 </div>
@@ -553,14 +553,14 @@
                         <li style="width: 130px;">旅行时间：${(travelTeam.travel_team_endTime.getTime() - travelTeam.travel_team_beginTime.getTime()) / (1000*3600*24)}天</li>
                         <li class="red">最近班次：${travelTeam.travel_team_beginTime.toLocaleString().split(' ')[0]}</li>
                     </ul>
-                    <h3><a  href="/products/1727.html" target="_blank">${travelTeam.travel_team_title}</a></h3>
+                    <h3><a  href="#" target="_blank">${travelTeam.travel_team_title}</a></h3>
                     <span>已参与：${travelTeam.travel_team_peoples}人数 </span> </div>
                 <div class="pong_r">
                     <dl>
                         <dt>抢购价：￥<b>${travelTeam.travel_team_price*1.5}</b>起</dt>
                         <dd>${travelTeam.travel_team_price}</dd>
                     </dl>
-                    <div class="money_02"><a href="/products/1727.html" target="_blank">立即抢购</a></div>
+                    <div class="money_02"><a href="#" target="_blank">立即抢购</a></div>
                 </div>
             </section>
             </c:forEach>

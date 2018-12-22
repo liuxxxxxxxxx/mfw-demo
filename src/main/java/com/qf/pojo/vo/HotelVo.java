@@ -1,6 +1,7 @@
 package com.qf.pojo.vo;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @param
@@ -20,10 +21,10 @@ public class HotelVo {
     private String hotel_buildtime;
     private String hotel_rebuildtime;
     private int hotel_rooms;
-    private String[] main_facility;
-    private String[] hotel_service;
-    private String[] hotel_facility;
-    private String[] room_facility;
+    private List<String> main_facility;
+    private List<String> hotel_service;
+    private List<String> hotel_facility;
+    private List<String> room_facility;
     private String hotel_help;
     private String hotel_img;
 
@@ -115,35 +116,35 @@ public class HotelVo {
         this.hotel_rooms = hotel_rooms;
     }
 
-    public String[] getMain_facility() {
+    public List<String> getMain_facility() {
         return main_facility;
     }
 
-    public void setMain_facility(String[] main_facility) {
+    public void setMain_facility(List<String> main_facility) {
         this.main_facility = main_facility;
     }
 
-    public String[] getHotel_service() {
+    public List<String> getHotel_service() {
         return hotel_service;
     }
 
-    public void setHotel_service(String[] hotel_service) {
+    public void setHotel_service(List<String> hotel_service) {
         this.hotel_service = hotel_service;
     }
 
-    public String[] getHotel_facility() {
+    public List<String> getHotel_facility() {
         return hotel_facility;
     }
 
-    public void setHotel_facility(String[] hotel_facility) {
+    public void setHotel_facility(List<String> hotel_facility) {
         this.hotel_facility = hotel_facility;
     }
 
-    public String[] getRoom_facility() {
+    public List<String> getRoom_facility() {
         return room_facility;
     }
 
-    public void setRoom_facility(String[] room_facility) {
+    public void setRoom_facility(List<String> room_facility) {
         this.room_facility = room_facility;
     }
 
@@ -177,10 +178,10 @@ public class HotelVo {
                 ", hotel_buildtime='" + hotel_buildtime + '\'' +
                 ", hotel_rebuildtime='" + hotel_rebuildtime + '\'' +
                 ", hotel_rooms=" + hotel_rooms +
-                ", main_facility=" + Arrays.toString(main_facility) +
-                ", hotel_service=" + Arrays.toString(hotel_service) +
-                ", hotel_facility=" + Arrays.toString(hotel_facility) +
-                ", room_facility=" + Arrays.toString(room_facility) +
+                ", main_facility=" + main_facility +
+                ", hotel_service=" + hotel_service +
+                ", hotel_facility=" + hotel_facility +
+                ", room_facility=" + room_facility +
                 ", hotel_help='" + hotel_help + '\'' +
                 ", hotel_img='" + hotel_img + '\'' +
                 '}';

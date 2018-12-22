@@ -7,6 +7,19 @@
     select * from hotel
     limit #{offset},#{pageCount}
     </select>
+
+    <select id="listSearchHotel" resultType="com.qf.pojo.po.TbHotel">
+        select *
+        from hotel
+        <where>
+            <if test="hotel_name!=null and hotel_name!=''">
+                hotel_name LIKE CONCAT(CONCAT('%',#{hotel_name}),'%')
+            </if>
+        </where>
+        limit #{offset},#{pageCount}
+    </select>
+
+
     <select id="getCount" resultType="_int">
         select count(1) from
         hotel
@@ -26,4 +39,36 @@
         insert into hotel(hotel_name,hotel_location,hotel_score,hotel_rate,hotel_intime,hotel_outtime,hotel_buildtime,hotel_rebuildtime,hotel_rooms,main_facility,hotel_service,hotel_facility,room_facility,hotel_help,hotel_img,hotel_id)
         values(#{hotel_name},#{hotel_location},#{hotel_score},#{hotel_rate},#{hotel_intime},#{hotel_outtime},#{hotel_buildtime},#{hotel_rebuildtime},#{hotel_rooms},#{main_facility},#{hotel_service},#{hotel_facility},#{room_facility},#{hotel_help},#{hotel_img},#{hotel_id})
     </insert>
+    <select id="listSearchHotelAll" parameterType="com.qf.pojo.vo.HotelVo" resultType="com.qf.pojo.po.TbHotel">
+        select * from hotel
+        <where>
+            <if test="hotel_name!=null and hotel_name!=''">
+              hotel_name like CONCAT(CONCAT('%',#{hotel_name}),'%')
+            </if>
+            <if test="hotel_location!=null and hotel_location!=''">
+               and hotel_location like CONCAT(CONCAT('%',#{hotel_location}),'%')
+            </if>
+            <if test="hotel_score!=null and hotel_score!=''">
+               and hotel_score>=#{hotel_score}
+            </if>
+            <if test="hotel_rate!=null and hotel_rate!=''">
+               and hotel_rate>=#{hotel_rate}
+            </if>
+            <if test="hotel_rebuildtime!=null and hotel_rebuildtime!=''">
+               and hotel_rebuildtime like CONCAT(CONCAT('%',#{rebuildtime}),'%')
+            </if>
+            <if test="main_facility!=null and main_facility!=''">
+               and main_facility like #{main_facility}
+            </if>
+            <if test="hotel_service!=null and hotel_service!=''">
+               and hotel_service like #{hotel_service}
+            </if>
+            <if test="hotel_facility!=null and hotel_facility!=''">
+               and hotel_facility like #{hotel_facility}
+            </if>
+            <if test="room_facility!=null and room_facility!=''">
+               and room_facility like #{room_facility}
+            </if>
+        </where>
+    </select>
 </mapper>
