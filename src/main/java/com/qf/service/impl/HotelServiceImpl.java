@@ -1,7 +1,8 @@
 package com.qf.service.impl;
 
-import com.qf.dao.TbHotelDao;
-import com.qf.pojo.po.TbHotel;
+import com.qf.dao.*;
+import com.qf.pojo.po.*;
+import com.qf.pojo.vo.HotelSearchVO;
 import com.qf.pojo.vo.HotelVo;
 import com.qf.service.HotelService;
 import com.qf.util.PagePro;
@@ -24,6 +25,14 @@ import java.util.*;
 public class HotelServiceImpl implements HotelService {
     @Autowired
     private TbHotelDao dao;
+    @Autowired
+    private HotelFacilityDao hotelFacilityDao;
+    @Autowired
+    private HotelServiceDao hotelServiceDao;
+    @Autowired
+    private MainFacility mainFacility;
+    @Autowired
+    private RoomFacilityDao roomFacilityDao;
     private final String SUCCESS="success";
     private final String ERROR="error";
     @Override
@@ -156,7 +165,7 @@ public class HotelServiceImpl implements HotelService {
             for (int i = 0; i < main_facility.size(); i++) {
                 String s = (String) main_facility.get(i);
                 main_facilitys.append(s);
-                if (i < main_facility.size()) {
+                if (i < main_facility.size()-1) {
                     main_facilitys.append(",");
                 }
             }
@@ -166,7 +175,7 @@ public class HotelServiceImpl implements HotelService {
             for (int i = 0; i < hotel_service.size(); i++) {
                 String s = (String) hotel_service.get(i);
                 hotel_services.append(s);
-                if (i < main_facility.size()) {
+                if (i < hotel_service.size()-1) {
                     hotel_services.append(",");
                 }
             }
@@ -176,7 +185,7 @@ public class HotelServiceImpl implements HotelService {
             for (int i = 0; i < hotel_facility.size(); i++) {
                 String s = (String) hotel_facility.get(i);
                 hotel_facilitys.append(s);
-                if (i < main_facility.size()) {
+                if (i < hotel_facility.size()-1) {
                     hotel_facilitys.append(",");
                 }
             }
@@ -186,7 +195,7 @@ public class HotelServiceImpl implements HotelService {
             for (int i = 0; i < room_facility.size(); i++) {
                 String s = (String) room_facility.get(i);
                 room_facilitys.append(s);
-                if (i < main_facility.size()) {
+                if (i < room_facility.size()-1) {
                     room_facilitys.append(",");
                 }
             }
@@ -207,5 +216,56 @@ public class HotelServiceImpl implements HotelService {
         } catch (SqlSessionException e) {
             return ERROR;
         }
+    }
+
+    @Override
+    public List<TbHotelFacility> ListTbHotelFacility() {
+        return hotelFacilityDao.listHotelFacility();
+    }
+
+    @Override
+    public List<TbHotelMainFacility> TbHotelMainFacility() {
+        return mainFacility.listTbHotelMainFacility();
+    }
+
+    @Override
+    public List<TbHotelService> TbHotelService() {
+        return hotelServiceDao.listHotelService();
+    }
+
+    @Override
+    public List<TbRoomFacility> TbRoomFacility() {
+        return roomFacilityDao.listRoomFacility();
+    }
+
+    @Override
+    public PagePro<TbHotel> getListsTbHotelBySearch(HotelSearchVO search,Integer currentPage,Integer pageCount) {
+        PagePro<TbHotel> page=new PagePro<>();
+//        HotelSearchVO search=new HotelSearchVO();
+        //获取酒店位置
+//        String hotel_location = String.valueOf(map.get("hotel_location"));
+        //获取酒店名称
+//        String hotel_name = String.valueOf(map.get("hotel_name"));
+        //获取当前页currentPage
+        //获取一页展示的条数pageCount
+        //我搜索类赋值
+       /* search.setHotel_location(hotel_location);
+        search.setHotel_name(hotel_name);*/
+        search.setPageCount(pageCount);
+        //得到所有的集合
+        search.setOffset(-1);
+        List<TbHotel> tbHotels = dao.listSearchHotelAll(search);
+        //获得集合的大小
+        int sumProduct = tbHotels.size();
+        //给搜索类赋值
+        page.setSumProduct(sumProduct);
+        page.setPageProcuct(pageCount);
+        page.setCurrentPage(currentPage);
+        page.getOffset();
+        //给search的offset赋值
+        search.setOffset(page.getOffset());
+        List<TbHotel> pageTbHotels = dao.listSearchHotelAll(search);
+        page.setProduct(pageTbHotels);
+        return page;
     }
 }

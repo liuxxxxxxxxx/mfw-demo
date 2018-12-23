@@ -1,7 +1,10 @@
 package com.qf.dao;
 
 import com.qf.pojo.po.TbHotel;
+import com.qf.pojo.po.TbHotelFacility;
+import com.qf.pojo.vo.HotelSearchVO;
 import com.qf.pojo.vo.HotelVo;
+import com.qf.service.HotelService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @param
@@ -22,6 +27,8 @@ import java.util.List;
 public class TbHotelDaoTest {
     @Autowired
     private TbHotelDao dao;
+    @Autowired
+//    private HotelService service;
 
     @Test
     public void listTbHotel() {
@@ -89,7 +96,7 @@ public class TbHotelDaoTest {
 
     @Test
     public void listSearchHotelAll() {
-        TbHotel tbHotel=new TbHotel();
+        HotelSearchVO tbHotel=new HotelSearchVO();
         tbHotel.setHotel_id("9011242");
         tbHotel.setHotel_help("酒店攻略\n" +
                 "必读客栈距离灵隐寺仅有5分钟步行路程。客栈距离西湖有15分钟车程，距离杭州火车站有30分钟车程。客栈距离杭州萧山国际机场有1小时路程。贴士客房享有典雅的装饰，提供空调、平板电视、带淋浴的私人浴室以及电热水壶。客栈设有提供旅游和订票服务的24小时前台以及私人花园。客栈设有图书馆及会议室。");
@@ -108,6 +115,31 @@ public class TbHotelDaoTest {
         tbHotel.setHotel_location("杭州市");
         tbHotel.setHotel_rate(4);
         tbHotel.setHotel_facility("%商务中心%理发美容室%SPA%门卫%前台保险柜%");
+        tbHotel.setOffset(1);
+        tbHotel.setPageCount(2);
         dao.listSearchHotelAll(tbHotel);
     }
+    @Test
+    public void testAppend(){
+        List<String> list=new ArrayList<>();
+        list.add("免费停车");
+        list.add("我就是测试的");
+        list.add("看看行不行");
+        StringBuffer sb=new StringBuffer();
+        for(int i=0;i<list.size();i++){
+            String s = list.get(i);
+            sb.append(s);
+            if(i<list.size()-1){
+                sb.append(",");
+            }
+        }
+        System.out.println(sb);
+    }
+   /* @Test
+    public void testMap(){
+        Map<String,Object> map=new HashMap<>();
+        List<TbHotelFacility> tbHotelFacility=service.ListTbHotelFacility();
+        map.put("test",tbHotelFacility);
+        Object test = map.get("test");
+    }*/
 }

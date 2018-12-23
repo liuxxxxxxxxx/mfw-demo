@@ -1,6 +1,7 @@
 package com.qf.service;
 
-import com.qf.pojo.po.TbHotel;
+import com.qf.pojo.po.*;
+import com.qf.pojo.vo.HotelSearchVO;
 import com.qf.util.PagePro;
 
 import java.util.List;
@@ -21,4 +22,14 @@ public interface HotelService {
     String removeHotel(String hotel_id);
 
     String addHotel(Map map);
+
+    List<TbHotelFacility> ListTbHotelFacility();
+
+    List<TbHotelMainFacility> TbHotelMainFacility();
+
+    List<TbHotelService> TbHotelService();
+
+    List<TbRoomFacility> TbRoomFacility();
+
+    PagePro<TbHotel> getListsTbHotelBySearch(HotelSearchVO search,Integer currentPage,Integer pageCount);
 }

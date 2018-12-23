@@ -1,6 +1,7 @@
 package com.qf.web;
 
-import com.qf.pojo.po.TbHotel;
+import com.qf.pojo.po.*;
+import com.qf.pojo.vo.HotelSearchVO;
 import com.qf.service.HotelService;
 import com.qf.util.PagePro;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,5 +65,26 @@ public class HotelAction {
         PagePro<TbHotel> tbHotels = service.listsHotel(currentPage, pageCount);
         model.addAttribute("hotels",tbHotels);
         return "hotel_index";
+    }
+    @GetMapping("allServiceTb")
+    @ResponseBody
+    @CrossOrigin
+    public Map<String,Object> allServiceTb(){
+        Map<String,Object> map=new HashMap<>();
+        List<TbHotelFacility> tbHotelFacility=service.ListTbHotelFacility();
+        List<TbHotelMainFacility> tbHotelMainFacility=service.TbHotelMainFacility();
+        List<TbHotelService> tbHotelService=service.TbHotelService();
+        List<TbRoomFacility> tbRoomFacility=service.TbRoomFacility();
+        map.put("tbHotelFacility",tbHotelFacility);
+        map.put("tbHotelMainFacility",tbHotelMainFacility);
+        map.put("tbHotelService",tbHotelService);
+        map.put("tbRoomFacility",tbRoomFacility);
+        return map;
+    }
+    @GetMapping("searchHotel")
+    @ResponseBody
+    @CrossOrigin
+    public PagePro<TbHotel> getListsTbHotelBySearch(HotelSearchVO search,@RequestParam(defaultValue = "1")int currentPage,@RequestParam(defaultValue = "10")int pageCount){
+        return service.getListsTbHotelBySearch(search,currentPage,pageCount);
     }
 }

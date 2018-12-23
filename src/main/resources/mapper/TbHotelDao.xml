@@ -70,7 +70,7 @@
                and room_facility like #{room_facility}
             </if>
         </where>
-        <if test="offset>0">
+        <if test="offset>=0">
             limit #{offset},#{pageCount}
         </if>
     </select>
