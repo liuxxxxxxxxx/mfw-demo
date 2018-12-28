@@ -1,7 +1,6 @@
 package com.qf.service.impl;
 
 import com.qf.dao.UserAuthorMapper;
-import com.qf.dao.UserImgMapper;
 import com.qf.dao.UserInfoDao;
 import com.qf.dao.UserInfoMapper;
 import com.qf.pojo.po.*;
@@ -29,7 +28,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserInfoDao userInfoDao;
     @Autowired
-    private UserImgMapper userImgMapper;
 
     @Override
     public List<UserInfo> listUsers() {
@@ -142,9 +140,5 @@ public class UserServiceImpl implements UserService {
         return userAuthor.getUserInfoId();
     }
 
-    @Override
-    public UserImg getImgUrl(int i) {
-        return userImgMapper.selectByPrimaryKey(i);
 
-    }
 }

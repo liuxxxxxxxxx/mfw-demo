@@ -1,7 +1,6 @@
 package com.qf.web;
 
 import com.qf.pojo.po.UserAuthor;
-import com.qf.pojo.po.UserImg;
 import com.qf.pojo.po.UserInfo;
 import com.qf.pojo.vo.UserPageInfo;
 import com.qf.service.UserService;
@@ -69,7 +68,7 @@ public class UserAdminAction {
         Random random = new Random();
         UserInfo userInfo = new UserInfo();
         for (int i = 1; i < n; i++) {
-            userInfo.setId(userService.getUserInfoId(i));
+//            userInfo.setId(userService.getUserInfoId(i));
 //            userInfo.setNickname(getAName());
 //            userInfo.setCountry("中国");
 //            userInfo.setArea("杭州");
@@ -80,12 +79,12 @@ public class UserAdminAction {
 //            } else {
 //                userInfo.setGender(true);
 //            }
-            UserImg imgUrl = userService.getImgUrl(i);
-            StringBuffer imgUrlBuffer = new StringBuffer("https:");
-            imgUrlBuffer.append(imgUrl.getImgUrl());
-
-            userInfo.setAvatar(imgUrlBuffer.toString());
-            userService.updateUserInfo(userInfo);
+//            UserImg imgUrl = userService.getImgUrl(i);
+//            StringBuffer imgUrlBuffer = new StringBuffer("http:");
+//            imgUrlBuffer.append(imgUrl.getImgUrl());
+//
+//            userInfo.setAvatar(imgUrlBuffer.toString());
+//            userService.updateUserInfo(userInfo);
         }
         return 1;
     }

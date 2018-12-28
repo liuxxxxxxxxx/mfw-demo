@@ -1,6 +1,5 @@
 package com.qf.service;
 
-import com.qf.pojo.po.UserImg;
 import com.qf.pojo.vo.AuthorVo;
 import com.qf.pojo.po.UserAuthor;
 import com.qf.pojo.po.UserInfo;
@@ -31,5 +30,4 @@ public interface UserService {
 
     String getUserInfoId(int Index);
 
-    UserImg getImgUrl(int i);
 }
