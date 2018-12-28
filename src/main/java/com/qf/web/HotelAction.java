@@ -85,6 +85,7 @@ public class HotelAction {
     @ResponseBody
     @CrossOrigin
     public PagePro<TbHotel> getListsTbHotelBySearch(HotelSearchVO search,@RequestParam(defaultValue = "1")int currentPage,@RequestParam(defaultValue = "10")int pageCount){
+        //ubuntuTest
         return service.getListsTbHotelBySearch(search,currentPage,pageCount);
     }
 }
